@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 09:42:58 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 13:54:28 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/14 16:44:31 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,11 @@ int				ft_add_conv(const char *format, va_list ap, int i);
 int				ft_atoi_pf(const char *str, int *index);
 char			*ft_strfill_space(char *str, int start, int len);
 char			*ft_strfill_zero(char *str, int start, int len);
-char			*ft_strfill_llu_base(char *str, unsigned long long nb,
+int				ft_strfill_llu_base(char *str, unsigned long long nb,
 		char *base);
-char			*ft_strfill_ll_base(char *str, unsigned long long nb,
+int				ft_strfill_ll_base(char *str, unsigned long long nb,
 		char *base);
+void			ft_str_add_flags(char *str, int *pos, t_conv conv, long long nb);
 
 void			ft_add_wd_acc_unsigned(unsigned long long nb, t_conv conv,
 		int len, int flag);
@@ -65,5 +66,7 @@ void			ft_conv_c(t_conv conv, va_list ap);
 void			ft_conv_s(t_conv conv, va_list ap);
 void			ft_conv_p(t_conv conv, va_list ap);
 void			ft_conv_d(t_conv conv, va_list ap);
+void			ft_conv_unsigned(t_conv conv, va_list ap);
+void			ft_conv_f(t_conv conv, va_list ap);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 10:29:15 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 14:46:02 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/14 16:40:05 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-static void	ft_str_add_flags(char *str, int *pos, t_conv conv, long long nb)
+void	ft_str_add_flags(char *str, int *pos, t_conv conv, long long nb)
 {
 	if (nb < 0)
 	{
@@ -39,7 +39,7 @@ static void	ft_add_width_acc(long long nb, t_conv conv, int len, int flag)
 	char	str[flag == 1 ? conv.width + 1 : len + 1];
 	int		pos;
 
-	pos = (flag == 1 && conv.flag & MINUS ) ? len : 0;
+	pos = (flag == 1 && conv.flag & MINUS) ? len : 0;
 	if (flag == 1)
 	{
 		if (conv.flag & ZERO && !(conv.flag & ACC) && !(conv.flag & MINUS))
