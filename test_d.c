@@ -5,7 +5,8 @@
 
 int	test_d(void)
 {
-	int		i = -1234567890;
+	int		i = 1234567890;
+	long	t = -444444441234567890;
 	long	l = -331234567890;
 	int		reta;
 	int		retb;
@@ -140,5 +141,47 @@ int	test_d(void)
 	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
 			retb, reta);
 	free(format);
+
+	printf("*~*~* Test 14 *~*~*\n");
+	format = strdup("%20.5i");
+	reta = printf(format, t);
+	printf("\n");
+	retb = ft_printf(format, t);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+	free(format);
+
+	printf("*~*~* Test 15 *~*~*\n");
+	format = strdup("%+20.5i");
+	reta = printf(format, i);
+	printf("\n");
+	retb = ft_printf(format, i);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+	free(format);
+
+	printf("*~*~* Test 16 *~*~*\n");
+	format = strdup("% -20i");
+	reta = printf(format, i);
+	printf("\n");
+	retb = ft_printf(format, i);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+	free(format);
+
+	printf("*~*~* Test 17 *~*~*\n");
+	format = strdup("%-+20i");
+	reta = printf(format, i);
+	printf("\n");
+	retb = ft_printf(format, i);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+	free(format);
+
+
 	return (1);
 }

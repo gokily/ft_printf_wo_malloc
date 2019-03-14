@@ -11,10 +11,10 @@ int	test_p(void)
 	char	*format;
 
 	printf("*~*~* Test 1 *~*~*\n");
-	format = strdup("%p");
-	reta = printf(format, &str);
+	format = strdup("%p and %p");
+	reta = printf(format, &str, &str);
 	printf("\n");
-	retb = ft_printf(format, &str);
+	retb = ft_printf(format, &str, &str);
 	ft_printf("\n");
 	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
 			retb, reta);
@@ -102,6 +102,66 @@ int	test_p(void)
 
 	printf("*~*~* Test 10 *~*~*\n");
 	format = strdup("%20.5p");
+	reta = printf(format, &str);
+	printf("\n");
+	retb = ft_printf(format, &str);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+	free(format);
+
+	printf("*~*~* Test 11 *~*~*\n");
+	format = strdup("%020p");
+	reta = printf(format, &str);
+	printf("\n");
+	retb = ft_printf(format, &str);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+	free(format);
+
+	printf("*~*~* Test 12 *~*~*\n");
+	format = strdup("%020.4p");
+	reta = printf(format, &str);
+	printf("\n");
+	retb = ft_printf(format, &str);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+	free(format);
+
+	printf("*~*~* Test 13 *~*~*\n");
+	format = strdup("%020.16p");
+	reta = printf(format, &str);
+	printf("\n");
+	retb = ft_printf(format, &str);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+	free(format);
+
+	printf("*~*~* Test 14 *~*~*\n");
+	format = strdup("%020.22p");
+	reta = printf(format, &str);
+	printf("\n");
+	retb = ft_printf(format, &str);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+	free(format);
+
+	printf("*~*~* Test 15 *~*~*\n");
+	format = strdup("%-20p");
+	reta = printf(format, &str);
+	printf("\n");
+	retb = ft_printf(format, &str);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+	free(format);
+
+	printf("*~*~* Test 14 *~*~*\n");
+	format = strdup("%0-20p");
 	reta = printf(format, &str);
 	printf("\n");
 	retb = ft_printf(format, &str);

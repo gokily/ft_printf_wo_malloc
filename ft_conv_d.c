@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 10:29:15 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 13:49:04 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/14 14:46:02 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@ static void	ft_add_width_acc(long long nb, t_conv conv, int len, int flag)
 	char	str[flag == 1 ? conv.width + 1 : len + 1];
 	int		pos;
 
-	pos = 0;
+	pos = (flag == 1 && conv.flag & MINUS ) ? len : 0;
 	if (flag == 1)
 	{
-		ft_strfill_space(str, 0, conv.width - len);
-		pos = conv.width - len;
+		if (conv.flag & ZERO && !(conv.flag & ACC) && !(conv.flag & MINUS))
+			ft_strfill_zero(str + pos, 0, conv.width - len);
+		else
+			ft_strfill_space(str + pos, 0, conv.width - len);
+		pos = pos == 0 ? conv.width - len : 0;
 	}
 	ft_str_add_flags(str, &pos, conv, nb);
 	if (conv.acc > conv.len)
@@ -52,8 +55,8 @@ static void	ft_add_width_acc(long long nb, t_conv conv, int len, int flag)
 		pos += conv.acc - conv.len;
 	}
 	ft_strfill_ll_base(str + pos, nb, "0123456789");
-	str[pos + conv.len] = '\0';
-	ft_add_to_buffer(str, pos + conv.len);
+	str[flag == 1 ? conv.width : len] = '\0';
+	ft_add_to_buffer(str, flag == 1 ? conv.width : len);
 }
 
 static void	ft_conv_d2(t_conv conv, long long nb)
