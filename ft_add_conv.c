@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 12:45:24 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 09:33:10 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/14 10:13:02 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ t_conv	ft_parse_flag(const char *format, va_list ap, int i, t_conv conv)
 	return (conv);
 }
 
-int	ft_add_conv(const char *format, va_list ap, int i)
+int		ft_add_conv(const char *format, va_list ap, int i)
 {
 	t_conv	conv;
 
@@ -124,5 +124,3 @@ int	ft_add_conv(const char *format, va_list ap, int i)
 	ft_make_conv(conv, ap);
 	return (conv.i + 1);
 }
-
-

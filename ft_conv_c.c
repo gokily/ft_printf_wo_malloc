@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 14:36:49 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 09:55:26 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/14 10:25:31 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	ft_add_width(char c, int width, int flag)
 	ft_add_to_buffer(str, width);
 }
 
-void	ft_conv_c(t_conv conv, va_list ap)
+void		ft_conv_c(t_conv conv, va_list ap)
 {
 	char c;
 
