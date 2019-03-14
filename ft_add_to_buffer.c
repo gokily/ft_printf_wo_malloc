@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 08:49:44 by gly               #+#    #+#             */
-/*   Updated: 2019/03/12 15:54:42 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/14 09:56:02 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,21 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-int		ft_add_to_buffer(char *str)
+int		ft_add_to_buffer(char *str, int len)
 {
 	static char	buf[BUFFSIZE];
 	static int	ret = 0;
 	static int	i = 0;
-	int			len;
+	int			tmp;
 
 	if (str == NULL)
 	{
 		write(1, buf, i);
-		return (ret);
+		i = 0;
+		tmp = ret;
+		ret = 0;
+		return (tmp);
 	}
-	len = ft_strlen(str);
 	if (i + len > BUFFSIZE)
 	{
 		write(1, buf, i);

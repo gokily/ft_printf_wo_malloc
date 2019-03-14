@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 09:42:58 by gly               #+#    #+#             */
-/*   Updated: 2019/03/12 15:32:26 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/14 09:55:51 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ typedef struct	s_conv
 
 int				ft_printf(const char *format, ...);
 
-int				ft_add_to_buffer(char *str);
+int				ft_add_to_buffer(char *str, int len);
 int				ft_add_str(const char *format, int i);
 int				ft_add_conv(const char *format, va_list ap, int i);
 int				ft_atoi_pf(const char *str, int *index);
+char			*ft_strfill_space(char *str, int start, int len);
 
 void			ft_conv_c(t_conv conv, va_list ap);
+void			ft_conv_s(t_conv conv, va_list ap);
 #endif
