@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 12:45:24 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 10:31:33 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/14 13:11:25 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	ft_make_conv(t_conv conv, va_list ap)
 		ft_conv_s(conv, ap);
 	else if (conv.type == 'p')
 		ft_conv_p(conv, ap);
-/*	else if (conv.type == 'i' || conv.type == 'd')
+	else if (conv.type == 'i' || conv.type == 'd')
 		ft_conv_d(conv, ap);
-	else if (conv.type == 'o')
+/*	else if (conv.type == 'o')
 		ft_conv_o(conv, ap);
 	else if (conv.type == 'u')
 		ft_conv_u(conv, ap);
@@ -41,25 +41,25 @@ t_conv	ft_parse_mod(const char *format, int i, t_conv conv)
 	if (format[i] == 'l')
 	{
 		if (format[i + 1] == 'l')
-		{
 			conv.flag |= LLNG;
-			conv.i++;
-		}
-		else
+		else if (!(conv.flag & LLNG))
 			conv.flag |= LONG;
 	}
 	else if (format[i] == 'h')
 	{
 		if (format[i + 1] == 'h')
-		{
-			conv.flag |= SHORT;
-			conv.i++;
-		}
-		else
 			conv.flag |= CHAR;
+		else if (!(conv.flag & CHAR))
+			conv.flag |= SHORT;
 	}
 	else if (format[i] == 'L')
 		conv.flag |= LDOUBLE;
+	else if (format[i] == 'j')
+		conv.flag |= JAY;
+	else if (format[i] == 'z')
+		conv.flag |= ZED;
+	else if (format[i] == 't')
+		conv.flag |= TEE;
 	return (conv);
 }
 
@@ -116,6 +116,8 @@ int		ft_add_conv(const char *format, va_list ap, int i)
 	conv.i = i;
 	conv.acc = 0;
 	conv.width = 0;
+	conv.flag = 0;
+	conv.len = 0;
 	conv = ft_parse_flag(format, ap, i, conv);
 	if (conv.type == 0)
 		return (ft_add_str(format, conv.i));

@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 08:33:37 by gly               #+#    #+#             */
-/*   Updated: 2019/03/12 15:55:00 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/14 13:04:14 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		ft_printf2(const char *format, va_list ap)
 		else
 			i = ft_add_str(format, i);
 	}
-	return (ft_add_to_buffer(NULL));
+	return (ft_add_to_buffer(NULL, 0));
 }
 
 int		ft_printf(const char *format, ...)

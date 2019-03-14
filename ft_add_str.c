@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 09:02:25 by gly               #+#    #+#             */
-/*   Updated: 2019/03/12 15:59:41 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/14 13:04:37 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_add_str_to_buf(const char *format, int i, int len)
 		j++;
 	}
 	str[len] = '\0';
-	ft_add_to_buffer(str);
+	ft_add_to_buffer(str, len);
 }
 
 int		ft_add_str(const char *format, int i)
