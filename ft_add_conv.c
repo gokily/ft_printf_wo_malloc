@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 12:45:24 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 10:13:02 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/14 10:31:33 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	ft_make_conv(t_conv conv, va_list ap)
 		ft_conv_c(conv, ap);
 	else if (conv.type == 's')
 		ft_conv_s(conv, ap);
-/*	else if (conv.type == 'p')
+	else if (conv.type == 'p')
 		ft_conv_p(conv, ap);
-	else if (conv.type == 'i' || conv.type == 'd')
+/*	else if (conv.type == 'i' || conv.type == 'd')
 		ft_conv_d(conv, ap);
 	else if (conv.type == 'o')
 		ft_conv_o(conv, ap);
