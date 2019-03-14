@@ -6,7 +6,7 @@
 #    By: gly <marvin@42.fr>                         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/12 09:31:19 by gly               #+#    #+#              #
-#    Updated: 2019/03/14 11:20:39 by gly              ###   ########.fr        #
+#    Updated: 2019/03/14 13:54:15 by gly              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,12 @@ SRC		=	ft_printf.c	\
 			ft_add_conv.c	\
 			ft_add_to_buffer.c	\
 			ft_util.c	\
+			ft_unsigned_common.c	\
 			ft_atoi_pf.c	\
 			ft_conv_c.c	\
 			ft_conv_s.c	\
 			ft_conv_p.c	\
+			ft_conv_d.c	\
 
 OBJ		=	$(SRC:.c=.o)
 

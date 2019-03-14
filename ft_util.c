@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 09:05:57 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 11:40:29 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/14 13:45:08 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,28 @@ char	*ft_strfill_llu_base(char *str, unsigned long long nb, char *base)
 	while (nb / power >= l_base)
 		power *= l_base;
 	while (power > 0)
+	{
+		str[i] = base[nb / power];
+		nb %= power;
+		power /= l_base;
+		i++;
+	}
+	return (str);
+}
+
+char	*ft_strfill_ll_base(char *str, long long nb, char *base)
+{
+	int					i;
+	long long	l_base;
+	long long	power;
+
+	l_base = ft_strlen(base);
+	power = nb >= 0 ? 1 : -1;
+	power *= (nb >= l_base || nb <= -l_base) ? l_base : 1;
+	i = 0;
+	while (nb / power >= l_base)
+		power *= l_base;
+	while (power != 0)
 	{
 		str[i] = base[nb / power];
 		nb %= power;

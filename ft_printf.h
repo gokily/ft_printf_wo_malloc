@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 09:42:58 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 11:22:15 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/14 13:54:28 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 # include <stdio.h>
 
-# define FLAG " -+#*.0123456789lh"
-# define CONV "cspdiouxXf"
+# define FLAG " -+#*.0123456789lhLjzt"
+# define CONV "cspdiobuxXf"
 # define PLUS 1
 # define MINUS 1 << 1
 # define SPACE 1 << 2
@@ -32,6 +32,9 @@
 # define CHAR 1 << 9
 # define ACC 1 << 10
 # define CAPS 1 << 11
+# define JAY 1 << 12
+# define ZED 1 << 13
+# define TEE 1 << 14
 
 typedef struct	s_conv
 {
@@ -53,9 +56,14 @@ char			*ft_strfill_space(char *str, int start, int len);
 char			*ft_strfill_zero(char *str, int start, int len);
 char			*ft_strfill_llu_base(char *str, unsigned long long nb,
 		char *base);
+char			*ft_strfill_ll_base(char *str, unsigned long long nb,
+		char *base);
 
+void			ft_add_wd_acc_unsigned(unsigned long long nb, t_conv conv,
+		int len, int flag);
 void			ft_conv_c(t_conv conv, va_list ap);
 void			ft_conv_s(t_conv conv, va_list ap);
 void			ft_conv_p(t_conv conv, va_list ap);
+void			ft_conv_d(t_conv conv, va_list ap);
 
 #endif
