@@ -6,11 +6,12 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 09:05:57 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 14:27:32 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 18:14:33 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
+#include "ft_printf.h"
 
 int		ft_strfill_space(char *str, int start, int len)
 {
@@ -40,45 +41,41 @@ int		ft_strfill_zero(char *str, int start, int len)
 	return (start);
 }
 
-int		ft_strfill_llu_base(char *str, unsigned long long nb, char *base)
+void	ft_zero_case(t_conv conv)
 {
-	int					i;
-	unsigned long long	l_base;
-	unsigned long long	power;
+	char	str[conv.width + 1];
+	int		pos;
 
-	l_base = ft_strlen(base);
-	power = 1;
-	i = 0;
-	while (nb / power >= l_base)
-		power *= l_base;
-	while (power > 0)
+	if (!(conv.flag & WDTH) && (conv.type != 'o' || !(conv.flag & POUND)))
+		return ;
+	pos = conv.flag & MINUS ? 1: 0;
+	ft_strfill_space(str, pos, conv.width - 1);
+	pos = conv.flag & MINUS ? 0 : conv.width - 1;
+	if (conv.flag & ACC)
 	{
-		str[i] = base[nb / power];
-		nb %= power;
-		power /= l_base;
-		i++;
+		if ((conv.flag & POUND) && (conv.type == 'o'))
+			str[pos] = '0';
+		else
+			str[pos] = ' ';
 	}
-	return (i);
+	else
+			str[pos] = '0';
+	ft_add_to_buffer(str, conv.width);
 }
 
-int		ft_strfill_ll_base(char *str, long long nb, char *base)
+int		ft_atoi_pf(const char *str, int *index)
 {
-	int			i;
-	long long	l_base;
-	long long	power;
+	int i;
+	int	nb;
 
-	l_base = ft_strlen(base);
-	power = nb >= 0 ? 1 : -1;
-	power *= (nb >= l_base || nb <= -l_base) ? l_base : 1;
-	i = 0;
-	while (nb / power >= l_base)
-		power *= l_base;
-	while (power != 0)
+	i = *index;
+	nb = 0;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		str[i] = base[nb / power];
-		nb %= power;
-		power /= l_base;
+		nb *= 10;
+		nb += str[i] - '0';
 		i++;
 	}
-	return (i);
+	*index = i - 1;
+	return (nb);
 }

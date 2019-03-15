@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 09:42:58 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 17:32:59 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 18:11:58 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,10 @@ int				ft_add_conv(const char *format, va_list ap, int i);
 int				ft_atoi_pf(const char *str, int *index);
 int				ft_strfill_space(char *str, int start, int len);
 int				ft_strfill_zero(char *str, int start, int len);
-int				ft_strfill_llu_base(char *str, unsigned long long nb,
-		char *base);
-int				ft_strfill_ll_base(char *str, unsigned long long nb,
-		char *base);
+int				ft_strfill_ll_base(char *str, long long nb, char *base);
 void			ft_str_add_flags(char *str, int *pos, t_conv conv, long long nb);
 int				ft_prefix_len(t_conv conv);
+void			ft_zero_case(t_conv conv);
 
 void			ft_add_wd_acc_unsigned(unsigned long long nb, t_conv conv,
 		int len, int flag);

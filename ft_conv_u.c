@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:05:18 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 17:40:26 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 18:12:38 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int		ft_baselen(t_conv conv)
+static int	ft_baselen(t_conv conv)
 {
 	if (conv.type == 'u')
 		return (10);
@@ -28,29 +28,7 @@ int		ft_baselen(t_conv conv)
 	return (0);
 }
 
-void	ft_zero_case(t_conv conv)
-{
-	char	str[conv.width + 1];
-	int		pos;
-
-	if (!(conv.flag & WDTH) && (conv.type != 'o' || !(conv.flag & POUND)))
-		return ;
-	pos = conv.flag & MINUS ? 1: 0;
-	ft_strfill_space(str, pos, conv.width - 1);
-	pos = conv.flag & MINUS ? 0 : conv.width - 1;
-	if (conv.flag & ACC)
-	{
-		if ((conv.flag & POUND) && (conv.type == 'o'))
-			str[pos] = '0';
-		else
-			str[pos] = ' ';
-	}
-	else
-			str[pos] = '0';
-	ft_add_to_buffer(str, conv.width);
-}
-
-void	ft_conv_u2(t_conv conv, unsigned long long nb)
+static void	ft_conv_u2(t_conv conv, unsigned long long nb)
 {
 	int		len;
 	int		prefix_len;

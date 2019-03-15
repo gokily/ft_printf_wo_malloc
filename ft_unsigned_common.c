@@ -6,14 +6,14 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 13:52:56 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 17:27:24 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 18:11:25 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int		ft_prefix_len(t_conv conv)
+int			ft_prefix_len(t_conv conv)
 {
 	if (conv.type == 'p')
 		return (2);
@@ -24,7 +24,7 @@ int		ft_prefix_len(t_conv conv)
 	return (0);
 }
 
-int		ft_putprefix(unsigned long long nb, char *str, int pos, t_conv conv)
+static int	ft_putprefix(unsigned long long nb, char *str, int pos, t_conv conv)
 {
 	int		len;
 
@@ -48,7 +48,28 @@ int		ft_putprefix(unsigned long long nb, char *str, int pos, t_conv conv)
 	return (pos + len);
 }
 
-void	ft_strfill_nb(char *str, unsigned long long nb, t_conv conv)
+static int	ft_strfill_llu_base(char *str, unsigned long long nb, char *base)
+{
+	int					i;
+	unsigned long long	l_base;
+	unsigned long long	power;
+
+	l_base = ft_strlen(base);
+	power = 1;
+	i = 0;
+	while (nb / power >= l_base)
+		power *= l_base;
+	while (power > 0)
+	{
+		str[i] = base[nb / power];
+		nb %= power;
+		power /= l_base;
+		i++;
+	}
+	return (i);
+}
+
+static void	ft_strfill_nb(char *str, unsigned long long nb, t_conv conv)
 {
 	if (conv.type == 'u')
 		ft_strfill_llu_base(str, nb, "0123456789");
@@ -62,7 +83,7 @@ void	ft_strfill_nb(char *str, unsigned long long nb, t_conv conv)
 		ft_strfill_llu_base(str, nb, "0123456789ABCDEF");
 }
 
-void	ft_add_wd_acc_unsigned(unsigned long long nb, t_conv conv,
+void		ft_add_wd_acc_unsigned(unsigned long long nb, t_conv conv,
 	int len, int flag)
 {
 	char	str[flag == 1 ? conv.width + 1 : len + 1];
