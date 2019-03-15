@@ -7,7 +7,7 @@ int	test_f(void)
 {
 	double		i = 123456.7854545822190;
 	long double	t = -444441.2531256431634567890;
-	long double	l = -4567.99999999999890;
+	long double	l = -4567.9999999;
 	int		reta;
 	int		retb;
 	char	*format;
@@ -102,7 +102,7 @@ int	test_f(void)
 			retb, reta);
 	free(format);
 
-	printf("*~*~* Test 7 *~*~*\n");
+	printf("*~*~* Test 10 *~*~*\n");
 	format = strdup("%-020f");
 	reta = printf(format, i);
 	printf("\n");
@@ -112,7 +112,7 @@ int	test_f(void)
 			retb, reta);
 	free(format);
 
-	printf("*~*~* Test 7 *~*~*\n");
+	printf("*~*~* Test 11 *~*~*\n");
 	format = strdup("%020.15f");
 	reta = printf(format, i);
 	printf("\n");

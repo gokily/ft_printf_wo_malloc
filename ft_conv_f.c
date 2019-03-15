@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 16:00:47 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 16:56:23 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 13:31:14 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void	ft_write_float(t_conv conv, long long whole,
 	{
 		if (conv.flag & ZERO && !(conv.flag & MINUS))
 			ft_strfill_zero(str + pos, 0, conv.width - len);
+		else
+			ft_strfill_space(str + pos, 0, conv.width - len);
 		pos = pos == 0 ? conv.width - len : 0;
 	}
 	ft_str_add_flags(str, &pos, conv, whole);
@@ -54,17 +56,20 @@ static void	ft_conv_f2(t_conv conv, long double nb)
 	long long	whole;
 	long double	fract;
 	int			len;
+	int			flag;
 
+	flag = (nb < 0 || conv.flag & SPACE || conv.flag & PLUS) ? 1 : 0;
 	whole = (long long)nb;
 	fract = nb - (long double)whole;
 	fract = ft_round_double(fract, conv.flag & ACC ? conv.acc : 6);
-	if (fract > 1)
+	if (fract >= 1.0 || fract <= -1.0)
 	{
-		whole++;
-		fract -= 1;
+		puts("ici");
+		whole += (long long)fract;
+		fract -= nb >= 0 ? 1 : -1;
 	}
 	conv.acc = conv.flag & ACC ? conv.acc : 6;
-	len = ft_longlonglen_base(whole, 10) + 1 + conv.acc;
+	len = ft_longlonglen_base(whole, 10) + 1 + conv.acc + flag;
 	ft_write_float(conv, whole, fract, len, conv.width > len ? 1 : 0);
 }
 
