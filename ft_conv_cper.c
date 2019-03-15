@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_conv_c.c                                        :+:      :+:    :+:   */
+/*   ft_conv_cper.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/12 14:36:49 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 10:25:31 by gly              ###   ########.fr       */
+/*   Created: 2019/03/15 13:50:45 by gly               #+#    #+#             */
+/*   Updated: 2019/03/15 13:50:47 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "ft_printf.h"
 
-static void	ft_add_width(char c, int width, int flag)
+static void	ft_add_width_char(char c, int width, int flag)
 {
 	char	str[width + 1];
 	int		i;
@@ -31,10 +32,16 @@ static void	ft_add_width(char c, int width, int flag)
 	ft_add_to_buffer(str, width);
 }
 
+void		ft_conv_per(t_conv conv)
+{
+	ft_add_width_char('%', conv.width > 1 ? conv.width : 1,
+			conv.flag & MINUS);
+}
+
 void		ft_conv_c(t_conv conv, va_list ap)
 {
 	char c;
 
 	c = va_arg(ap, int);
-	ft_add_width(c, conv.width > 1 ? conv.width : 1, conv.flag & MINUS);
+	ft_add_width_char(c, conv.width > 1 ? conv.width : 1, conv.flag & MINUS);
 }

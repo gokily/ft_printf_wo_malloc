@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 12:45:24 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 13:33:18 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 13:46:52 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	ft_make_conv(t_conv conv, va_list ap)
 		ft_conv_unsigned(conv, ap);
 	else if (conv.type == 'f')
 		ft_conv_f(conv, ap);
+	else if (conv.type == '%')
+		ft_conv_per(conv);
 }
 
 t_conv	ft_parse_mod(const char *format, int i, t_conv conv)

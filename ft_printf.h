@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 09:42:58 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 16:44:31 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 14:27:56 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 
 # define FLAG " -+#*.0123456789lhLjzt"
-# define CONV "cspdiobuxXf"
+# define CONV "cspdiobuxXf%"
 # define PLUS 1
 # define MINUS 1 << 1
 # define SPACE 1 << 2
@@ -52,17 +52,19 @@ int				ft_add_to_buffer(char *str, int len);
 int				ft_add_str(const char *format, int i);
 int				ft_add_conv(const char *format, va_list ap, int i);
 int				ft_atoi_pf(const char *str, int *index);
-char			*ft_strfill_space(char *str, int start, int len);
-char			*ft_strfill_zero(char *str, int start, int len);
+int				ft_strfill_space(char *str, int start, int len);
+int				ft_strfill_zero(char *str, int start, int len);
 int				ft_strfill_llu_base(char *str, unsigned long long nb,
 		char *base);
 int				ft_strfill_ll_base(char *str, unsigned long long nb,
 		char *base);
 void			ft_str_add_flags(char *str, int *pos, t_conv conv, long long nb);
+int				ft_prefix_len(t_conv conv);
 
 void			ft_add_wd_acc_unsigned(unsigned long long nb, t_conv conv,
 		int len, int flag);
 void			ft_conv_c(t_conv conv, va_list ap);
+void			ft_conv_per(t_conv conv);
 void			ft_conv_s(t_conv conv, va_list ap);
 void			ft_conv_p(t_conv conv, va_list ap);
 void			ft_conv_d(t_conv conv, va_list ap);

@@ -6,7 +6,7 @@
 #    By: gly <marvin@42.fr>                         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/12 09:31:19 by gly               #+#    #+#              #
-#    Updated: 2019/03/15 13:34:52 by gly              ###   ########.fr        #
+#    Updated: 2019/03/15 13:51:02 by gly              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC		=	ft_printf.c	\
 			ft_unsigned_common.c	\
 			ft_signed_common.c	\
 			ft_atoi_pf.c	\
-			ft_conv_c.c	\
+			ft_conv_cper.c	\
 			ft_conv_s.c	\
 			ft_conv_p.c	\
 			ft_conv_d.c	\
