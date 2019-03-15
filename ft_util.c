@@ -6,13 +6,13 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 09:05:57 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 13:38:39 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 14:27:32 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 
-char	*ft_strfill_space(char *str, int start, int len)
+int		ft_strfill_space(char *str, int start, int len)
 {
 	int		i;
 
@@ -23,10 +23,10 @@ char	*ft_strfill_space(char *str, int start, int len)
 		start++;
 		i++;
 	}
-	return (str);
+	return (start);
 }
 
-char	*ft_strfill_zero(char *str, int start, int len)
+int		ft_strfill_zero(char *str, int start, int len)
 {
 	int		i;
 
@@ -37,7 +37,7 @@ char	*ft_strfill_zero(char *str, int start, int len)
 		start++;
 		i++;
 	}
-	return (str);
+	return (start);
 }
 
 int		ft_strfill_llu_base(char *str, unsigned long long nb, char *base)

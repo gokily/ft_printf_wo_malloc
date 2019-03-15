@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 13:52:56 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 13:38:58 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 17:27:24 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,14 @@ int		ft_prefix_len(t_conv conv)
 	return (0);
 }
 
-void	ft_putprefix(char *str, t_conv conv)
+int		ft_putprefix(unsigned long long nb, char *str, int pos, t_conv conv)
 {
+	int		len;
+
+	if (nb == 0)
+		return (pos);
+	len = ft_prefix_len(conv);
+	str += pos;
 	if (conv.type == 'p')
 		ft_strncpy(str, "0x", 2);
 	else if (conv.flag & POUND)
@@ -39,6 +45,7 @@ void	ft_putprefix(char *str, t_conv conv)
 		else if (conv.type == 'X')
 			ft_strncpy(str, "0X", 2);
 	}
+	return (pos + len);
 }
 
 void	ft_strfill_nb(char *str, unsigned long long nb, t_conv conv)
@@ -60,26 +67,25 @@ void	ft_add_wd_acc_unsigned(unsigned long long nb, t_conv conv,
 {
 	char	str[flag == 1 ? conv.width + 1 : len + 1];
 	int		pos;
-	int		prefix;
 
-	prefix = ft_prefix_len(conv);
 	pos = (flag == 1 && conv.flag & MINUS) ? len : 0;
 	if (flag == 1)
 	{
 		if (conv.flag & ZERO && !(conv.flag & ACC) && !(conv.flag & MINUS))
+		{
+			pos = ft_putprefix(nb, str, pos, conv);
 			ft_strfill_zero(str + pos, 0, conv.width - len);
+			flag = 2;
+		}
 		else
 			ft_strfill_space(str + pos, 0, conv.width - len);
-		pos = pos == 0 ? conv.width - len : 0;
+		pos = (pos == 0 || flag == 2) ? conv.width - len + pos : 0;
 	}
-	ft_putprefix(str + pos, conv);
-	pos += prefix;
+	if (flag != 2)
+		pos = ft_putprefix(nb, str, pos, conv);
 	if (conv.acc > conv.len)
-	{
-		ft_strfill_zero(str, pos, conv.acc - conv.len);
-		pos += conv.acc - conv.len;
-	}
+		pos = ft_strfill_zero(str, pos, conv.acc - conv.len);
 	ft_strfill_nb(str + pos, nb, conv);
-	str[flag == 1 ? conv.width : len] = '\0';
-	ft_add_to_buffer(str, flag == 1 ? conv.width : len);
+	str[flag >= 1 ? conv.width : len] = '\0';
+	ft_add_to_buffer(str, flag >= 1 ? conv.width : len);
 }

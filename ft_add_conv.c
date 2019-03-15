@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 12:45:24 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 13:46:52 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 17:35:20 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,49 +65,56 @@ t_conv	ft_parse_mod(const char *format, int i, t_conv conv)
 	return (conv);
 }
 
-t_conv	ft_parse_acc_wd(const char *format, va_list ap, int i, t_conv conv)
+t_conv	ft_parse_acc_wd(const char *format, va_list ap, t_conv conv)
 {
+	int		i;
+
+	i = conv.i;
 	if (format[i] == '*')
+	{
 		conv.width = va_arg(ap, int);
+		conv.flag |= WDTH;
+	}
 	else if (format[i] >= '1' && format[i] <= '9')
+	{
 		conv.width = ft_atoi_pf(format, &i);
+		conv.flag |= WDTH;
+	}
 	else if (format[i] == '.')
 	{
 		i++;
 		conv.flag |= ACC;
 		if (format[i] == '*')
 			conv.acc = va_arg(ap, int);
-		else if (format[i] >= '1' && format[i] <= '9')
+		else
 			conv.acc = ft_atoi_pf(format, &i);
 	}
 	conv.i = i;
 	return (conv);
 }
 
-t_conv	ft_parse_flag(const char *format, va_list ap, int i, t_conv conv)
+t_conv	ft_parse_flag(const char *format, va_list ap, t_conv conv)
 {
-	while (ft_strchr(FLAG, format[i]))
+	while (ft_strchr(FLAG, format[conv.i]))
 	{
-		if (format[i] == '-')
+		if (format[conv.i] == '-')
 			conv.flag |= MINUS;
-		else if (format[i] == '+')
+		else if (format[conv.i] == '+')
 			conv.flag |= PLUS;
-		else if (format[i] == '#')
+		else if (format[conv.i] == '#')
 			conv.flag |= POUND;
-		else if (format[i] == ' ')
+		else if (format[conv.i] == ' ')
 			conv.flag |= SPACE;
-		else if (format[i] == '0')
+		else if (format[conv.i] == '0')
 			conv.flag |= ZERO;
 		else
 		{
-			conv = ft_parse_mod(format, i, conv);
-			conv = ft_parse_acc_wd(format, ap, i, conv);
-			i = conv.i;
+			conv = ft_parse_mod(format, conv.i, conv);
+			conv = ft_parse_acc_wd(format, ap, conv);
 		}
-		i++;
+		conv.i++;
 	}
-	conv.i = i;
-	conv.type = ft_strchr(CONV, format[i]) ? format[i] : 0;
+	conv.type = ft_strchr(CONV, format[conv.i]) ? format[conv.i] : 0;
 	return (conv);
 }
 
@@ -117,10 +124,10 @@ int		ft_add_conv(const char *format, va_list ap, int i)
 
 	conv.i = i;
 	conv.acc = 0;
-	conv.width = 0;
+	conv.width = 1;
 	conv.flag = 0;
 	conv.len = 0;
-	conv = ft_parse_flag(format, ap, i, conv);
+	conv = ft_parse_flag(format, ap, conv);
 	if (conv.type == 0)
 		return (ft_add_str(format, conv.i));
 	if (conv.type == 'X')
