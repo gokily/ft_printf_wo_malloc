@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 13:52:56 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 15:34:38 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 13:38:58 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_putprefix(char *str, t_conv conv)
 			ft_strncpy(str, "0X", 2);
 	}
 }
+
 void	ft_strfill_nb(char *str, unsigned long long nb, t_conv conv)
 {
 	if (conv.type == 'u')

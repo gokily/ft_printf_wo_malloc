@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 09:05:57 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 16:44:44 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 13:38:39 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		ft_strfill_llu_base(char *str, unsigned long long nb, char *base)
 
 int		ft_strfill_ll_base(char *str, long long nb, char *base)
 {
-	int					i;
+	int			i;
 	long long	l_base;
 	long long	power;
 

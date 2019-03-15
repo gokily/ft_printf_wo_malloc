@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:05:18 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 15:40:45 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 13:38:15 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_conv_u2(t_conv conv, unsigned long long nb)
 	len = conv.acc > conv.len ? conv.acc : conv.len;
 	ft_add_wd_acc_unsigned(nb, conv, len, conv.width > len ? 1 : 0);
 }
-
 
 void	ft_conv_unsigned(t_conv conv, va_list ap)
 {

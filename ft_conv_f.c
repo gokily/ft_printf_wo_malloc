@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 16:00:47 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 13:31:14 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 13:41:50 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,34 +28,33 @@ static void	ft_strfill_fract(char *str, int acc, long double fract)
 }
 
 static void	ft_write_float(t_conv conv, long long whole,
-		long double fract, int len, int flag)
+		long double fract, int flag)
 {
-	char	str[flag == 1 ? conv.width + 1 : len + 1];
+	char	str[flag == 1 ? conv.width + 1 : conv.len + 1];
 	int		pos;
 
-	pos = (flag == 1 && conv.flag & MINUS) ? len : 0;
+	pos = (flag == 1 && conv.flag & MINUS) ? conv.len : 0;
 	if (flag == 1)
 	{
 		if (conv.flag & ZERO && !(conv.flag & MINUS))
-			ft_strfill_zero(str + pos, 0, conv.width - len);
+			ft_strfill_zero(str + pos, 0, conv.width - conv.len);
 		else
-			ft_strfill_space(str + pos, 0, conv.width - len);
-		pos = pos == 0 ? conv.width - len : 0;
+			ft_strfill_space(str + pos, 0, conv.width - conv.len);
+		pos = pos == 0 ? conv.width - conv.len : 0;
 	}
 	ft_str_add_flags(str, &pos, conv, whole);
 	pos += ft_strfill_ll_base(str + pos, whole, "0123456789");
 	str[pos] = '.';
 	pos++;
 	ft_strfill_fract(str + pos, conv.acc, fract);
-	str[flag == 1 ? conv.width : len] = '\0';
-	ft_add_to_buffer(str, flag == 1 ? conv.width : len);
+	str[flag == 1 ? conv.width : conv.len] = '\0';
+	ft_add_to_buffer(str, flag == 1 ? conv.width : conv.len);
 }
 
 static void	ft_conv_f2(t_conv conv, long double nb)
 {
 	long long	whole;
 	long double	fract;
-	int			len;
 	int			flag;
 
 	flag = (nb < 0 || conv.flag & SPACE || conv.flag & PLUS) ? 1 : 0;
@@ -64,13 +63,12 @@ static void	ft_conv_f2(t_conv conv, long double nb)
 	fract = ft_round_double(fract, conv.flag & ACC ? conv.acc : 6);
 	if (fract >= 1.0 || fract <= -1.0)
 	{
-		puts("ici");
 		whole += (long long)fract;
 		fract -= nb >= 0 ? 1 : -1;
 	}
 	conv.acc = conv.flag & ACC ? conv.acc : 6;
-	len = ft_longlonglen_base(whole, 10) + 1 + conv.acc + flag;
-	ft_write_float(conv, whole, fract, len, conv.width > len ? 1 : 0);
+	conv.len = ft_longlonglen_base(whole, 10) + 1 + conv.acc + flag;
+	ft_write_float(conv, whole, fract, conv.width > conv.len ? 1 : 0);
 }
 
 void		ft_conv_f(t_conv conv, va_list ap)

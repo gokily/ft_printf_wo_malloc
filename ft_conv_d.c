@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 10:29:15 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 16:40:05 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 13:35:43 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,6 @@
 #include <stdint.h>
 #include "ft_printf.h"
 #include "libft/libft.h"
-
-void	ft_str_add_flags(char *str, int *pos, t_conv conv, long long nb)
-{
-	if (nb < 0)
-	{
-		str[*pos] = '-';
-		(*pos)++;
-	}
-	else if (conv.flag & PLUS)
-	{
-		str[*pos] = '+';
-		(*pos)++;
-	}
-	else if (conv.flag & SPACE)
-	{
-		str[*pos] = ' ';
-		(*pos)++;
-	}
-}
 
 static void	ft_add_width_acc(long long nb, t_conv conv, int len, int flag)
 {
