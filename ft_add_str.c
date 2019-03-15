@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 09:02:25 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 13:04:37 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 18:34:09 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int		ft_add_str(const char *format, int i)
 	len = 0;
 	while (format[i + len] != '\0' && format[i + len] != '%')
 		len++;
+	if (len == 0)
+		return (i + len);
 	ft_add_str_to_buf(format, i, len);
 	return (i + len);
 }

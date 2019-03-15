@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 12:45:24 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 17:45:17 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 18:48:46 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_conv	ft_parse_acc_wd(const char *format, va_list ap, t_conv conv)
 
 t_conv	ft_parse_flag(const char *format, va_list ap, t_conv conv)
 {
-	while (ft_strchr(FLAG, format[conv.i]))
+	while (format[conv.i] != '\0' && ft_strchr(FLAG, format[conv.i]))
 	{
 		if (format[conv.i] == '-')
 			conv.flag |= MINUS;
@@ -124,8 +124,6 @@ int		ft_add_conv(const char *format, va_list ap, int i)
 	conv = ft_parse_flag(format, ap, conv);
 	if (conv.type == 0)
 		return (ft_add_str(format, conv.i));
-	if (conv.type == 'X')
-		conv.flag |= CAPS;
 	ft_make_conv(conv, ap);
 	return (conv.i + 1);
 }

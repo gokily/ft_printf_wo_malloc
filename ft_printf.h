@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 09:42:58 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 18:11:58 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 18:49:18 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@
 # define SHORT 1 << 8
 # define CHAR 1 << 9
 # define ACC 1 << 10
-# define CAPS 1 << 11
+# define WDTH 1 << 11
 # define JAY 1 << 12
 # define ZED 1 << 13
 # define TEE 1 << 14
-# define WDTH 1 << 15
 
 typedef struct	s_conv
 {

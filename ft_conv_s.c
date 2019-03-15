@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 08:48:52 by gly               #+#    #+#             */
-/*   Updated: 2019/03/14 10:07:46 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/15 18:29:44 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		ft_conv_s(t_conv conv, va_list ap)
 	str = va_arg(ap, char *);
 	conv.len = str == NULL ? 6 : ft_strlen(str);
 	conv.len = (conv.flag & ACC) && conv.acc < conv.len ? conv.acc : conv.len;
-	if (conv.width > conv.len)
+	if (conv.flag & WDTH && conv.width > conv.len)
 	{
 		ft_add_width(str == NULL ? "(null)" : str, conv);
 	}

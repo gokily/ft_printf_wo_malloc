@@ -11,6 +11,7 @@ int test_o(void);
 int test_x(void);
 int test_f(void);
 int test_0(void);
+int test_undef(void);
 
 int	main(int ac, char **av)
 {
@@ -35,5 +36,7 @@ int	main(int ac, char **av)
 		test_f();
 	if (strchr(av[1], '0'))
 		test_0();
+	if (strchr(av[1], 'n'))
+		test_undef();
 	return (0);
 }
