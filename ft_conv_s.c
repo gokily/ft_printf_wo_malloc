@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 08:48:52 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 18:29:44 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/18 17:16:29 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static void	ft_add_width(char *str, t_conv conv)
 	else
 	{
 		ft_strncpy(ret + conv.width - conv.len, str, conv.len);
-		ft_strfill_space(ret, 0, conv.width - conv.len);
+		if (conv.flag & ZERO)
+			ft_strfill_zero(ret, 0, conv.width - conv.len);
+		else
+			ft_strfill_space(ret, 0, conv.width - conv.len);
 	}
 	ret[conv.width] = '\0';
 	ft_add_to_buffer(ret, conv.width);

@@ -28,6 +28,20 @@ void ind_test(int nb, char *str, int i)
 			retb, reta);
 }
 
+void ind_test_str(int nb, char *str, char *i)
+{
+	int		reta;
+	int		retb;
+
+	printf("*~*~* Test %.2i *~*~*\n", nb);
+	reta = printf(str, i);
+	printf("\n");
+	retb = ft_printf(str, i);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+}
+
 int	main(int ac, char **av)
 {
 	if (ac == 1)
