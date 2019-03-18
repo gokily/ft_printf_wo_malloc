@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:05:18 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 18:12:38 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/18 16:57:54 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	ft_conv_u2(t_conv conv, unsigned long long nb)
 	int		len;
 	int		prefix_len;
 
-	if (nb == 0 && conv.type != 'u' && (conv.flag & ACC && conv.acc == 0))
+	if (nb == 0 && (conv.flag & ACC && conv.acc == 0))
 		ft_zero_case(conv);
 	else
 	{		

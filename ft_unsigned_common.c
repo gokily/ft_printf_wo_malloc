@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 13:52:56 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 18:11:25 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/18 15:58:43 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_putprefix(unsigned long long nb, char *str, int pos, t_conv conv)
 {
 	int		len;
 
-	if (nb == 0)
+	if (nb == 0 && conv.type != 'p')
 		return (pos);
 	len = ft_prefix_len(conv);
 	str += pos;

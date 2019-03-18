@@ -29,10 +29,10 @@ int	test_0(void)
 	ind_test(15, "%5o", i);
 	ind_test(16, "%#5o", i);
 
-	ind_test(17, "%5.x", i);
-	ind_test(18, "%#5.x", i);
-	ind_test(19, "%5.o", i);
-	ind_test(20, "%#5.o", i);
+	ind_test(17, "%05.x", i);
+	ind_test(18, "%#05.x", i);
+	ind_test(19, "%05.o", i);
+	ind_test(20, "%#05.o", i);
 
 	return (0);
 }
