@@ -12,6 +12,21 @@ int test_x(void);
 int test_f(void);
 int test_0(void);
 int test_undef(void);
+int test_mouli(void);
+
+void ind_test(int nb, char *str, int i)
+{
+	int		reta;
+	int		retb;
+
+	printf("*~*~* Test %.2i *~*~*\n", nb);
+	reta = printf(str, i);
+	printf("\n");
+	retb = ft_printf(str, i);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+}
 
 int	main(int ac, char **av)
 {
@@ -38,5 +53,7 @@ int	main(int ac, char **av)
 		test_0();
 	if (strchr(av[1], 'n'))
 		test_undef();
+	if (strchr(av[1], 'm'))
+		test_mouli();
 	return (0);
 }

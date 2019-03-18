@@ -3,19 +3,7 @@
 #include "ft_printf.h"
 #include <stdlib.h>
 
-void ind_test(int nb, char *str, int i)
-{
-	int		reta;
-	int		retb;
-
-	printf("*~*~* Test %.2i *~*~*\n", nb);
-	reta = printf(str, i);
-	printf("\n");
-	retb = ft_printf(str, i);
-	ft_printf("\n");
-	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
-			retb, reta);
-}
+void ind_test(int nb, char *str, int i);
 
 int	test_0(void)
 {

@@ -5,7 +5,7 @@
 
 int	test_x(void)
 {
-	uintmax_t		i = -4294967296;
+	unsigned long		i = -4294967296;
 	unsigned int	j = 94967296;
 	unsigned int	k = 542;
 	int		reta;
