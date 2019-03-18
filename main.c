@@ -13,6 +13,7 @@ int test_f(void);
 int test_0(void);
 int test_undef(void);
 int test_mouli(void);
+int test_wild(void);
 
 void ind_test(int nb, char *str, int i)
 {
@@ -37,6 +38,20 @@ void ind_test_str(int nb, char *str, char *i)
 	reta = printf(str, i);
 	printf("\n");
 	retb = ft_printf(str, i);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+}
+
+void ind_test_wild(int nb, char *str, int i, int w)
+{
+	int		reta;
+	int		retb;
+
+	printf("*~*~* Test %.2i *~*~*\n", nb);
+	reta = printf(str, w, i);
+	printf("\n");
+	retb = ft_printf(str, w, i);
 	ft_printf("\n");
 	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
 			retb, reta);
@@ -69,5 +84,7 @@ int	main(int ac, char **av)
 		test_undef();
 	if (strchr(av[1], 'm'))
 		test_mouli();
+	if (strchr(av[1], 'w'))
+		test_wild();
 	return (0);
 }

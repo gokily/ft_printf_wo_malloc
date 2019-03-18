@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 12:45:24 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 18:48:46 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/18 17:39:48 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,29 +61,33 @@ t_conv	ft_parse_mod(const char *format, int i, t_conv conv)
 
 t_conv	ft_parse_acc_wd(const char *format, va_list ap, t_conv conv)
 {
-	int		i;
+	int		n;
 
-	i = conv.i;
-	if (format[i] == '*')
+	if (format[conv.i] == '*')
 	{
-		conv.width = va_arg(ap, int);
+		n = va_arg(ap, int);
+		conv.width = n < 0 ? -n : n;
+		conv.flag |= n < 0 ? MINUS : 0;
 		conv.flag |= WDTH;
 	}
-	else if (format[i] >= '1' && format[i] <= '9')
+	else if (format[conv.i] >= '1' && format[conv.i] <= '9')
 	{
-		conv.width = ft_atoi_pf(format, &i);
+		conv.width = ft_atoi_pf(format, &conv.i);
 		conv.flag |= WDTH;
 	}
-	else if (format[i] == '.')
+	else if (format[conv.i] == '.')
 	{
-		i++;
+		conv.i++;
 		conv.flag |= ACC;
-		if (format[i] == '*')
-			conv.acc = va_arg(ap, int);
+		if (format[conv.i] == '*')
+		{
+			n = va_arg(ap, int);
+			conv.acc = n > 0 ? n : 0;
+			conv.flag ^= n < 0 ? ACC : 0;
+		}
 		else
-			conv.acc = ft_atoi_pf(format, &i);
+			conv.acc = ft_atoi_pf(format, &conv.i);
 	}
-	conv.i = i;
 	return (conv);
 }
 
