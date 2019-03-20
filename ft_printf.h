@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 09:42:58 by gly               #+#    #+#             */
-/*   Updated: 2019/03/15 18:49:18 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/20 10:54:54 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 
 # define FLAG " -+#*.0123456789lhLjzt"
-# define CONV "cspdiobuxXf%"
+# define CONV "cspdiobuxXfF%"
 # define PLUS 1
 # define MINUS 1 << 1
 # define SPACE 1 << 2

@@ -14,6 +14,7 @@ int test_0(void);
 int test_undef(void);
 int test_mouli(void);
 int test_wild(void);
+int test_jzt(void);
 
 void ind_test(int nb, char *str, int i)
 {
@@ -86,5 +87,7 @@ int	main(int ac, char **av)
 		test_mouli();
 	if (strchr(av[1], 'w'))
 		test_wild();
+	if (strchr(av[1], 'j'))
+		test_jzt();
 	return (0);
 }

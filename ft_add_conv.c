@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 12:45:24 by gly               #+#    #+#             */
-/*   Updated: 2019/03/18 17:39:48 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/20 10:55:17 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_make_conv(t_conv conv, va_list ap)
 		ft_conv_d(conv, ap);
 	else if (ft_strchr("uoxXb", conv.type))
 		ft_conv_unsigned(conv, ap);
-	else if (conv.type == 'f')
+	else if (conv.type == 'f' || conv.type == 'F')
 		ft_conv_f(conv, ap);
 	else if (conv.type == '%')
 		ft_conv_per(conv);
