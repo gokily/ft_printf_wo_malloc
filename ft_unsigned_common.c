@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 13:52:56 by gly               #+#    #+#             */
-/*   Updated: 2019/03/18 15:58:43 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/20 13:10:46 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ int			ft_prefix_len(t_conv conv)
 {
 	if (conv.type == 'p')
 		return (2);
-	else if (ft_strchr("bo", conv.type) && conv.flag & POUND)
-		return (1);
-	else if (ft_strchr("xX", conv.type) && conv.flag & POUND)
-		return (2);
+	else if (conv.flag & POUND)
+	{
+		if ((conv.type == 'o' && conv.acc <= conv.len) || conv.type == 'b')
+			return (1);
+		else if (ft_strchr("xX", conv.type))
+			return (2);
+	}
 	return (0);
 }
 
@@ -28,7 +31,8 @@ static int	ft_putprefix(unsigned long long nb, char *str, int pos, t_conv conv)
 {
 	int		len;
 
-	if (nb == 0 && conv.type != 'p')
+	if ((nb == 0 && conv.type != 'p') ||
+			(conv.type == 'o' && conv.acc > conv.len))
 		return (pos);
 	len = ft_prefix_len(conv);
 	str += pos;
@@ -84,7 +88,7 @@ static void	ft_strfill_nb(char *str, unsigned long long nb, t_conv conv)
 }
 
 void		ft_add_wd_acc_unsigned(unsigned long long nb, t_conv conv,
-	int len, int flag)
+		int len, int flag)
 {
 	char	str[flag == 1 ? conv.width + 1 : len + 1];
 	int		pos;

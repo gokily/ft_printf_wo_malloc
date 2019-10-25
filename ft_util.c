@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 09:05:57 by gly               #+#    #+#             */
-/*   Updated: 2019/03/18 16:58:38 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/20 13:20:07 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_zero_case(t_conv conv)
 
 	if (!(conv.flag & WDTH) && (conv.type != 'o' || !(conv.flag & POUND)))
 		return ;
-	pos = conv.flag & MINUS ? 1: 0;
+	pos = conv.flag & MINUS ? 1 : 0;
 	ft_strfill_space(str, pos, conv.width - 1);
 	pos = conv.flag & MINUS ? 0 : conv.width - 1;
 	if ((conv.flag & POUND) && (conv.type == 'o'))

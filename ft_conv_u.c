@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:05:18 by gly               #+#    #+#             */
-/*   Updated: 2019/03/18 16:57:54 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/20 13:19:45 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,19 @@ static void	ft_conv_u2(t_conv conv, unsigned long long nb)
 	if (nb == 0 && (conv.flag & ACC && conv.acc == 0))
 		ft_zero_case(conv);
 	else
-	{		
+	{
 		if (conv.flag & CHAR)
 			nb = (unsigned char)nb;
 		else if (conv.flag & SHORT)
 			nb = (unsigned short)nb;
-		prefix_len = nb == 0 ? 0 : ft_prefix_len(conv);
 		conv.len = ft_ulllen_base(nb, ft_baselen(conv));
+		prefix_len = nb == 0 ? 0 : ft_prefix_len(conv);
 		len = (conv.acc > conv.len ? conv.acc : conv.len) + prefix_len;
 		ft_add_wd_acc_unsigned(nb, conv, len, conv.width > len ? 1 : 0);
 	}
 }
 
-void	ft_conv_unsigned(t_conv conv, va_list ap)
+void		ft_conv_unsigned(t_conv conv, va_list ap)
 {
 	if (conv.flag & JAY)
 		ft_conv_u2(conv, va_arg(ap, uintmax_t));

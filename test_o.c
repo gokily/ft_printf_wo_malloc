@@ -183,5 +183,24 @@ int	test_o(void)
 	free(format);
 
 
+	printf("*~*~* Test 18 *~*~*\n");
+	format = strdup("%#35.16o");
+	reta = printf(format, i);
+	printf("\n");
+	retb = ft_printf(format, i);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+	free(format);
+
+	printf("*~*~* Test 19 *~*~*\n");
+	format = strdup("%#.16o");
+	reta = printf(format, i);
+	printf("\n");
+	retb = ft_printf(format, i);
+	ft_printf("\n");
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+	free(format);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 12:45:24 by gly               #+#    #+#             */
-/*   Updated: 2019/03/20 10:55:17 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/20 13:27:32 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,20 @@ t_conv	ft_parse_acc_wd(const char *format, va_list ap, t_conv conv)
 {
 	int		n;
 
+	conv.flag |= (format[conv.i] == '*' ||
+		(format[conv.i] >= '1' && format[conv.i] <= '9')) ? WDTH : 0;
 	if (format[conv.i] == '*')
 	{
 		n = va_arg(ap, int);
 		conv.width = n < 0 ? -n : n;
 		conv.flag |= n < 0 ? MINUS : 0;
-		conv.flag |= WDTH;
 	}
 	else if (format[conv.i] >= '1' && format[conv.i] <= '9')
-	{
 		conv.width = ft_atoi_pf(format, &conv.i);
-		conv.flag |= WDTH;
-	}
 	else if (format[conv.i] == '.')
 	{
-		conv.i++;
 		conv.flag |= ACC;
-		if (format[conv.i] == '*')
+		if (format[++conv.i] == '*')
 		{
 			n = va_arg(ap, int);
 			conv.acc = n > 0 ? n : 0;

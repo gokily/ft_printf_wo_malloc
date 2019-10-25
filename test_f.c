@@ -122,5 +122,16 @@ int	test_f(void)
 			retb, reta);
 	free(format);
 
+	l = -9223372936854775808.000000;
+	printf("*~*~* Test 12 *~*~*\n");
+	format = strdup("\\!/%20.56lf\\!/");
+	reta = printf(format, l);
+	printf("\n");
+	retb = ft_printf(format, l);
+	ft_printf("\n");
+	printf("ret is %d", reta);
+	printf(reta == retb ? "OK\n" : "KO, our ret is %d and the correct one is %d\n",
+			retb, reta);
+	free(format);
 	return (1);
 }

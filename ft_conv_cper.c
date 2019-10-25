@@ -6,10 +6,9 @@
 /*   By: gly <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 13:50:45 by gly               #+#    #+#             */
-/*   Updated: 2019/03/18 16:09:56 by gly              ###   ########.fr       */
+/*   Updated: 2019/03/20 13:18:51 by gly              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_printf.h"
 
@@ -20,7 +19,7 @@ static void	ft_add_width_char(char c, int width, int flag, int zero)
 	char	fill;
 
 	i = 0;
-	fill = flag || !zero ?  ' ' : '0';
+	fill = flag || !zero ? ' ' : '0';
 	while (i < width)
 	{
 		str[i] = fill;

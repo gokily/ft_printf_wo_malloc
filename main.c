@@ -8,6 +8,7 @@ int test_p(void);
 int test_d(void);
 int test_u(void);
 int test_o(void);
+int test_b(void);
 int test_x(void);
 int test_f(void);
 int test_0(void);
@@ -89,5 +90,7 @@ int	main(int ac, char **av)
 		test_wild();
 	if (strchr(av[1], 'j'))
 		test_jzt();
+	if (strchr(av[1], 'b'))
+		test_b();
 	return (0);
 }
