@@ -1,4 +1,4 @@
-# ft_printf withou malloc
+# ft_printf without malloc
 
 In this version of ft_printf, I coded without allocating memory with malloc. The execution speed of this version of ft_printf is about three times as fast as the version with malloc. It is almost as fast as the original printf.
 
